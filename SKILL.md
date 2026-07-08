@@ -326,8 +326,6 @@ brand_film_modes:
     camera_translation: hand-led motion, texture close-up, gentle push, organic framing
     lighting_translation: soft natural light, warm fill, visible texture shadows
     risk: 容易变得童趣或不够商业
-```
-
 ## Selection Rules
 
 - Select one `brand_film_mode` only after `creative_type`, `scene_ref`, `motion_chain`, `model_ref`, and `camera_plan` are chosen.
