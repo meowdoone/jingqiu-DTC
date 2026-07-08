@@ -2,9 +2,11 @@
 
 ## Purpose
 
-`creative_type` is the main DTC creative logic selected by `DTC Creative Director`.
+`creative_type` is the main DTC creative logic selected by `DTC Creative Director`. It should decide what the buyer wants to feel, become, remember, or purchase before deciding how the product proof appears.
 
 Choose exactly one main `creative_type`. Do not blend multiple main types unless one is clearly secondary in the Reference Pack.
+
+Default to DTC-first creative types. Use proof-first or demo-first types only when the user explicitly asks for Amazon listing, how-to, product explanation, functional demonstration, mechanism explanation, or size/fit proof.
 
 ## Schema
 
@@ -28,6 +30,110 @@ creative_type:
 
 ```yaml
 creative_types:
+  - id: desire-scene
+    description: 先制造一个买家想进入的场景，再让商品成为这个场景里的可拥有对象。
+    label: Desire Scene
+    best_for: Shopify PDP 视频、Meta/TikTok DTC 广告、品牌短片、视觉吸引力强或场景感强的商品
+    buyer_tension: 用户还没进入理性比较，先需要被场景和拥有感吸引
+    required_product_evidence: 商品外观、使用关系或包装必须可见，不能只拍氛围
+    visual_structure: thumb-stopping scene -> buyer desire -> product enters as object -> natural proof -> brand memory
+    hook_logic: 用强视觉场景或反常构图先抓注意力
+    proof_logic: 把材质、尺寸、使用关系藏进自然动作，不做教程
+    CTA_logic: 引导用户想拥有这个场景里的商品
+    risk: 容易变成空氛围或商品太小
+    when_not_to_use: 商品没有可见外观证据，或用户明确要求功能说明
+
+  - id: identity-upgrade
+    description: 让商品帮助买家靠近一种更理想的身份、状态或审美选择。
+    label: Identity Upgrade
+    best_for: 穿搭、个护、家居、数码配件、礼品、办公、运动和生活方式商品
+    buyer_tension: 用户想让自己看起来更专业、更精致、更有准备或更像某种生活方式
+    required_product_evidence: 商品必须能自然挂靠到人物状态、空间状态或使用身份
+    visual_structure: identity cue -> tension gap -> product as upgrade signal -> lived-in proof -> confident end frame
+    hook_logic: 用人物状态、空间状态或选择瞬间引出身份欲望
+    proof_logic: 用真实携带、摆放、佩戴、触摸或使用动作证明商品属于这个身份
+    CTA_logic: 引导用户选择这件能代表自己的商品
+    risk: 容易让人物和身份感抢走商品
+    when_not_to_use: 商品没有身份表达空间，或需要严格规格说明
+
+  - id: ritual-moment
+    description: 把商品放进一个可重复的日常仪式，让买家想把它加入自己的生活。
+    label: Ritual Moment
+    best_for: 护理、香氛、饮品、食品、家居、睡眠、厨房、办公和宠物日常商品
+    buyer_tension: 用户想要一个更舒服、更有秩序、更像自己的日常时刻
+    required_product_evidence: 商品参与的手部动作、放置关系或使用时机必须可见
+    visual_structure: sensory hook -> ritual setup -> product touch/action -> small proof -> memory end frame
+    hook_logic: 用触感、声音、光线、手部动作或环境细节开场
+    proof_logic: 在仪式动作里自然显示商品细节、质感或使用关系
+    CTA_logic: 引导用户把商品加入自己的 routine
+    risk: 容易变成慢生活空镜
+    when_not_to_use: 商品没有自然日常动作或场景
+
+  - id: occasion-trigger
+    description: 用一个强购买时机触发行动，如旅行、通勤、开学、健身、搬家、节日或换季。
+    label: Occasion Trigger
+    best_for: 季节性、礼品、旅行、运动、收纳、服饰、户外、办公室和家庭场景商品
+    buyer_tension: 用户在某个时刻突然需要准备、升级、替换或送礼
+    required_product_evidence: 商品必须能真实出现在该 occasion 的动作或空间里
+    visual_structure: occasion cue -> urgent desire/tension -> product enters -> proof in action -> buy-now memory
+    hook_logic: 用场景身份或时间压力让用户立刻识别“我也需要”
+    proof_logic: 用收纳、携带、摆放、穿戴、送出或打开动作证明商品适合这个时机
+    CTA_logic: 引导用户在这个 occasion 前完成购买
+    risk: 容易过度节日化或编造场景
+    when_not_to_use: 商品和 occasion 没有真实关系
+
+  - id: gift-emotion
+    description: 把商品作为礼物情绪的载体，强调被选择、被打开、被记住的瞬间。
+    label: Gift Emotion
+    best_for: 礼品、定制、套装、包装好看、家居、香氛、饰品、母婴和节日商品
+    buyer_tension: 买家想送出一个不敷衍、有质感、能被记住的礼物
+    required_product_evidence: 包装、定制、外观、套装内容或递送动作必须真实可见
+    visual_structure: gift tension -> tactile packaging/product reveal -> emotional handoff -> product detail proof -> remembered end frame
+    hook_logic: 用送礼压力、打开瞬间或触感细节抓注意力
+    proof_logic: 用包装层次、商品细节、定制点或手部交接证明礼物价值
+    CTA_logic: 引导用户把商品选作礼物
+    risk: 容易编造祝福文字、假品牌卡或假收礼反应
+    when_not_to_use: 商品没有礼品属性或包装证据
+
+  - id: lifestyle-proof
+    description: 在真实生活动作中完成商品证明，让 proof 像生活片段而不是说明书。
+    label: Lifestyle Proof
+    best_for: 需要证明但不适合硬演示的 DTC 商品
+    buyer_tension: 用户想确认商品真的适合自己的生活，但不想看 Amazon listing demo
+    required_product_evidence: 商品使用关系、尺寸、材质或结果必须在自然动作里可见
+    visual_structure: lifestyle hook -> buyer action -> product role visible -> hidden proof -> brand-memory frame
+    hook_logic: 用生活状态或内容原生动作开场
+    proof_logic: 把手部、空间、比例、材质、结果藏在自然动作里
+    CTA_logic: 引导用户把商品放进自己的场景
+    risk: 容易 proof 太弱或变成泛生活方式
+    when_not_to_use: 商品必须被逐步教学才能理解
+
+  - id: creator-native-hook
+    description: 用平台原生创作者开头抓人，但主线仍然是购买欲望，不是教程讲解。
+    label: Creator Native Hook
+    best_for: TikTok/Reels/Shorts 风格广告、UGC-like DTC 素材、需要更强前 2 秒停留的商品
+    buyer_tension: 用户在刷内容，不会先听产品说明
+    required_product_evidence: 创作者动作、手部或场景必须让商品真实可读
+    visual_structure: native interruption -> identity/occasion tension -> product reveal -> proof inside action -> CTA cue
+    hook_logic: 用平台原生动作、反差画面、第一人称场景或一句情绪句抓注意力
+    proof_logic: 用自然使用、手部接触或场景结果支持，不做 step-by-step instruction
+    CTA_logic: 引导用户停下来看商品并点击购买
+    risk: 容易变成泛 UGC 教程或口播过多
+    when_not_to_use: 用户要求无人物品牌片，或商品不能被创作者自然使用
+
+  - id: premium-product-memory
+    description: 用高级品牌片语言让商品留下形状、材质、光线和拥有感记忆。
+    label: Premium Product Memory
+    best_for: 高客单、礼品、包装强、质感强、家居、科技、配件、发布感或品牌感商品
+    buyer_tension: 用户需要先相信这个商品有质感和值得拥有
+    required_product_evidence: 形状、材质、包装、logo/label 或结构细节必须清楚
+    visual_structure: product-as-memory hook -> tactile detail -> desirable scene -> restrained proof -> iconic end frame
+    hook_logic: 用商品外观、材质反光、尺度关系或慢速 reveal 建立记忆
+    proof_logic: 用微距、接触阴影、真实表面和手部动作支撑质感
+    CTA_logic: 引导用户记住商品并进入购买页
+    risk: 容易太像奢侈品空镜，商品用途不清
+    when_not_to_use: 商品外观普通且必须靠步骤解释才懂
+
   - id: problem-solution
     description: 用商品使用过程把一个具体问题转成解决状态。
     label: Problem Solution
@@ -200,73 +306,130 @@ creative_types:
 
 ## Buyer Situation Router
 
-Use this router after Product Truth Card creation and before selecting the main `creative_type`.
+Use this router after Product Truth Card creation and DTC Desire Angle, before selecting the main `creative_type`.
 
 ```yaml
+default_rule:
+  priority: DTC-first
+  meaning: 先选择欲望、身份、场景、仪式、礼物、品牌记忆或平台原生钩子，再把商品 proof 嵌入自然动作。
+  avoid_by_default:
+    - Amazon listing demo
+    - instruction manual tone
+    - feature checklist
+    - problem explanation
+    - feature list
+    - step-by-step use
+
 buyer_situation_router:
-  - situation: 商品需要解释怎么用
-    primary_creative_type: ugc-demo
-    secondary_creative_type: routine-integration
-    use_when: 使用方法、操作顺序、上手方式或真实使用语境需要被看见
+  - situation: 默认 DTC 商品广告、Shopify PDP 视频、Meta/TikTok paid social 或品牌短片
+    primary_creative_type: desire-scene
+    secondary_creative_type: lifestyle-proof
+    use_when: 用户没有明确要求 Amazon listing、how-to、产品说明或功能演示
 
-  - situation: 买家担心质量
-    primary_creative_type: trust-proof
-    secondary_creative_type: mechanism-reveal
-    use_when: 材质、结构、包装、耐用感、工艺或可信细节是购买阻力
+  - situation: 买家想靠近某种生活状态、审美或身份
+    primary_creative_type: identity-upgrade
+    secondary_creative_type: desire-scene
+    use_when: 商品能表达人物状态、空间状态、穿搭/办公/运动/家居身份
 
-  - situation: 买家担心尺寸适配
-    primary_creative_type: comparison
-    secondary_creative_type: scale-proof
-    use_when: 尺寸、容量、比例、贴合、佩戴、安装或收纳适配需要被证明
+  - situation: 商品适合日常重复使用或情绪化 routine
+    primary_creative_type: ritual-moment
+    secondary_creative_type: lifestyle-proof
+    use_when: 护理、饮品、食品、香氛、睡眠、厨房、办公、家居或宠物日常
 
-  - situation: 商品有定制或选项
+  - situation: 有强购买时机
+    primary_creative_type: occasion-trigger
+    secondary_creative_type: desire-scene
+    use_when: 旅行、通勤、健身、开学、搬家、节日、换季、婚礼或生日等 occasion 触发购买
+
+  - situation: 商品有礼物属性、定制属性或包装记忆点
+    primary_creative_type: gift-emotion
+    secondary_creative_type: premium-product-memory
+    use_when: 买家在选择送礼、纪念日、节日、定制或更有质感的礼物
+
+  - situation: 商品需要 proof 但不能像说明书
+    primary_creative_type: lifestyle-proof
+    secondary_creative_type: desire-scene
+    use_when: 商品确实需要展示材质、尺寸、使用关系或结果，但默认要藏进自然生活动作
+
+  - situation: 平台原生短视频，需要前 2 秒强停留
+    primary_creative_type: creator-native-hook
+    secondary_creative_type: lifestyle-proof
+    use_when: TikTok/Reels/Shorts 风格广告，用户不是来学习产品说明
+
+  - situation: 商品外观、包装、材质或品牌感强
+    primary_creative_type: premium-product-memory
+    secondary_creative_type: sensory-proof
+    use_when: 质感、包装、形状、材质、logo/label 或慢速 reveal 是购买记忆
+
+  - situation: 商品有定制或选项，但输出仍是 DTC 广告
     primary_creative_type: customization-choice
-    secondary_creative_type: null
+    secondary_creative_type: gift-emotion
     use_when: 颜色、尺寸、套装、模块、配置、上传图案或个性化入口必须被看见
 
-  - situation: 商品材质、细节强
-    primary_creative_type: sensory-proof
-    secondary_creative_type: product-macro
-    use_when: 质地、纹理、光泽、触感、结构、包装或工艺是主要吸引点
-
-  - situation: 商品使用步骤重要
-    primary_creative_type: feature-to-benefit
-    secondary_creative_type: mechanism-reveal
-    use_when: 用户需要理解功能入口、步骤顺序、机制细节和最终好处
+proof_first_exception_gate:
+  applies_only_when_user_explicitly_asks_for:
+    - Amazon listing
+    - how-to
+    - 产品说明
+    - 功能演示
+    - 使用方法
+    - 机制解释
+    - 尺寸适配证明
+  allowed_primary_creative_types:
+    - ugc-demo
+    - feature-to-benefit
+    - mechanism-reveal
+    - scale-proof
 ```
 
 ## Selection Rules
 
-- Select by buyer tension and available proof, not by desired style.
+- Select by `dtc_desire_angle`, buyer tension, and available Product Truth Card evidence, not by style words alone.
+- If intent is ambiguous, choose one of the DTC-first types: `desire-scene`, `identity-upgrade`, `ritual-moment`, `occasion-trigger`, `gift-emotion`, `lifestyle-proof`, `creator-native-hook`, or `premium-product-memory`.
+- Do not select `ugc-demo`, `feature-to-benefit`, `mechanism-reveal`, or `scale-proof` as the primary type unless the user explicitly asks for Amazon listing, how-to, product explanation, functional demonstration, mechanism explanation, or size/fit proof.
 - `customization-choice` requires real options, configuration, or customization evidence.
 - `founder-demo` requires brand/founder context; do not invent it.
 - `comparison` requires a fair neutral comparison or user-provided basis.
 - `scale-proof` requires real size, fit, capacity, placement, or compatibility evidence.
 - `sensory-proof` and `product-macro` need strong visual detail.
-- If the product is already highly constrained by Product Truth Card, choose the lowest-risk creative type that still gives a reason to watch.
+- Function proof must appear inside emotion, identity, occasion, ritual, gift, lifestyle, creator-native, or brand-memory structure.
+- If the product is already highly constrained by Product Truth Card, choose the lowest-risk DTC-first creative type that still gives a reason to watch and buy.
+- Never make the default script an Amazon listing demo, instruction manual tone, feature checklist, problem explanation, feature list, or step-by-step use.
 
 ## Supporting Menus
 
 Hook tactics:
 
 - visual interruption
-- problem recognition
-- direct question
-- specific claim
+- identity cue
+- occasion cue
+- sensory interruption
+- object desire reveal
+- native creator interruption
+- gift opening moment
+- brand memory reveal
 - curiosity gap
-- before-after contrast
-- micro demo
+- micro proof inside action
 - detail macro
 - choice reveal
-- mistake callout
-- comparison open
-- routine disruption
+- ritual interruption
+
+Desire levers:
+
+- want to own the scene
+- want to look prepared
+- want to upgrade identity
+- want to give a better gift
+- want to make the routine feel better
+- want to be ready for an occasion
+- want to remember the product shape/material
+- want to click before the explanation
 
 Proof mechanics:
 
 - material macro
 - hand pressure / touch
-- use sequence
+- natural use action
 - scale / fit check
 - compatibility check
 - configuration reveal
@@ -275,17 +438,19 @@ Proof mechanics:
 - side-by-side comparison
 - expert handling
 - routine completion
-- social proof frame
+- proof hidden in lifestyle action
 
 CTA patterns:
 
-- check the details
+- shop the moment
+- make it yours
+- choose the one that fits
+- gift it now
+- add it to the routine
+- be ready for the occasion
+- remember this product
 - choose your option
 - upload your design
 - shop the set
 - confirm your fit
-- see how it works
-- get the routine
-- try it today
 - build your kit
-- compare the options

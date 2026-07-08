@@ -41,7 +41,7 @@ storyboard_panel:
 
 The five panels do not use a universal fixed role template.
 
-Each panel gets its `content_task`, `visual_fragment_logic`, camera, and motion from `picture_fragment_logic` in the `DTC Creative Reference Pack`.
+Each panel gets its `content_task`, `visual_fragment_logic`, purchase emotion task, camera, and motion from `picture_fragment_logic` in the `DTC Creative Reference Pack`.
 
 The sequence must:
 
@@ -49,7 +49,9 @@ The sequence must:
 - preserve the same shoot world,
 - keep motion continuity across panels,
 - include visible product evidence where the selected creative logic requires it,
-- avoid generic lifestyle frames that do not prove the SKU.
+- make every panel carry a desire, identity, occasion, ritual, gift, lifestyle, creator-native, or brand-memory task,
+- hide proof inside natural action unless the user explicitly requests Amazon listing, how-to, product explanation, functional demonstration, mechanism explanation, or size/fit proof,
+- avoid generic lifestyle frames that do not make the SKU desirable or truthful.
 
 ## Rhythm Suggestion
 
@@ -58,14 +60,27 @@ Use this as a default pacing pattern when `picture_fragment_logic` does not prov
 ```yaml
 rhythm_suggestion:
   beats:
-    - quiet hook
-    - brand world / buyer context
-    - product proof moment
-    - motion or use completion
-    - restrained hero frame
+    - thumb-stopping visual hook
+    - buyer identity / occasion tension
+    - product enters as desirable object
+    - proof hidden inside natural action
+    - brand-memory end frame
 ```
 
 This is pacing guidance, not a fixed role contract. If product truth, `creative_type`, or available proof needs a different order, write the reason in `picture_fragment_logic`.
+
+Do not let the default rhythm become:
+
+```yaml
+forbidden_default_rhythm:
+  - problem explanation
+  - feature list
+  - step-by-step use
+  - Amazon A+ demonstration
+  - Amazon listing demo
+  - instruction manual tone
+  - feature checklist
+```
 
 ## End Frame Contract
 
@@ -81,7 +96,7 @@ end_frame:
   lighting_state:
 ```
 
-Use `end_frame` to keep the closing image restrained, product-readable, and connected to the proof already shown.
+Use `end_frame` to keep the closing image restrained, product-readable, emotionally memorable, and connected to the proof already shown.
 
 ## Video-Ready Keyframe Criteria
 
@@ -93,18 +108,27 @@ Every panel must:
 - inherit `brand_film_mode` as internal brand-film language without director names,
 - keep Chinese `ref_descriptions` so every selected option explains what it does,
 - contain a visible action state that can continue into video generation,
+- include a purchase emotion task, not only a product proof task,
 - include real physical contact or plausible contact shadows,
 - carry continuity from the previous panel,
 - avoid fake UI, fake reviews, fake claims, fake badges, and unsupported result shots.
 
 ## Script Binding
 
-The English script row for each panel must bind to the same camera and motion:
+The final English script table should sell the moment first. Use this user-facing table by default:
 
-```text
-panel camera_ref + motion_ref -> script Camera / Motion
-panel borrowed logic -> script Reference Logic
-panel visual proof -> subtitle and voiceover
+```markdown
+| 时间 | Visual Beat | Desire / Tension | Product Role | On-screen Text | Voiceover | CTA Intent |
+|---|---|---|---|---|---|---|
 ```
 
-Do not use voiceover to compensate for missing proof in the image.
+Internal production packs may still bind each panel to camera, motion, and reference logic:
+
+```text
+panel camera_ref + motion_ref -> internal Camera / Motion pack
+panel borrowed logic -> internal Reference Logic pack
+panel purchase emotion task -> script Desire / Tension
+panel product proof -> script Product Role, subtitle, and voiceover
+```
+
+Do not force `Camera / Motion` or `Reference Logic` into the final user-facing script unless the user asks for an internal breakdown. Do not use voiceover to compensate for missing proof in the image.

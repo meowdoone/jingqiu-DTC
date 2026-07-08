@@ -2,7 +2,18 @@
 
 ## Purpose
 
-`scene_ref` decides where the product can be proven. The scene is not decoration.
+`scene_ref` decides where the product can be desired and proven. The scene is not decoration, but it also must not collapse into an Amazon listing demo set.
+
+Choose the scene from `dtc_desire_angle` first:
+
+- `target_buyer` decides whose world this is.
+- `buying_emotion` decides whether the scene should feel aspirational, intimate, urgent, giftable, premium, practical, or creator-native.
+- `desired_identity` decides the human presence and styling restraint.
+- `use_occasion` decides the location and prop system.
+- `brand_world` decides light, color, surface, texture, and continuity.
+- `purchase_trigger` decides which product proof must appear inside natural action.
+
+Default scene selection must make the product desirable before it explains the product. Proof is still required, but it should be embedded in touch, placement, carrying, opening, gifting, routine, or identity cues unless the user explicitly asks for how-to, feature explanation, mechanism reveal, size proof, or Amazon listing output.
 
 ## Schema
 
@@ -217,4 +228,16 @@ After selecting a scene, five panels must preserve:
 - same surface family,
 - same light direction,
 - same prop system,
-- same product scale logic.
+- same product scale logic,
+- same brand world,
+- same buyer emotion,
+- same level of product readability.
+
+Do not choose scenes that force:
+
+- tutorial tone,
+- instruction manual tone,
+- feature checklist,
+- step-by-step use,
+- Amazon A+ demonstration,
+- Amazon listing demo.
