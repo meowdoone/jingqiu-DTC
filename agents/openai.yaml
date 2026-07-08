@@ -1,30 +1,38 @@
 display_name: jingqiu-DTC
-short_description: Build SKU-level DTC product creative storyboards through Product Truth, compliant references, Brand Film Look, image storyboard delivery, and validation.
+short_description: Build SKU-level DTC-first product ads and brand-short storyboards through Product Truth, Desire Angle, compliant references, Brand Film Look, image delivery, and validation.
 default_prompt: >
   Use this skill for SKU-level DTC product storyboard work from a product URL,
   ASIN, product image, screenshot, ecommerce page, or SKU brief. First build a
   Product Truth Card with source_evidence, locked_terms, forbid_mutations, and
-  allowed_claims. Collect only compliant public, authorized, user-provided,
-  local, or fallback references, and decompose each selected reference into
-  ad_reference records. Before image generation, run DTC Creative Director.
-  Select exactly one main creative_type through the buyer situation router, then
-  select scene_ref, motion_chain, model_ref, camera_plan, brand_film_mode,
-  script_pattern, picture_fragment_logic, and end_frame. Output an
-  internal DTC Creative Reference Pack. Every selected creative_type, scene_ref,
-  motion_ref, model_ref, and camera_ref must carry its Chinese description from
-  the reference library. Keep brand_film_mode internal and never expose director
-  names or "like this director" language. Then run Brand Film Look Director to
-  create an internal Brand Film Look Pack with brand_world_lock,
-  cinematic_grammar, shot_function_map, material_and_light_rules, pacing_rules,
-  signature_shot, end_frame_rule, and failure_rules. The shot_function_map must
-  follow picture_fragment_logic and must not impose fixed panel roles. Then run
-  Storyboard Design Expert, using only the DTC Creative Reference Pack and Brand
-  Film Look Pack as creative inputs. Generate one actual horizontal five-panel
-  16:9 storyboard/contact-sheet image. Every panel must be a video-ready
-  keyframe, and panel tasks must come from picture_fragment_logic. The
-  user-facing output remains exactly three sections: product image, storyboard
-  image, and a 15-second or 30-second English script. The English script must
-  include Camera / Motion and Reference Logic. Save run.json and
-  source_records.json when filesystem access is available. Store output paths,
-  validation metadata, Brand Film Look Pack, and blocked artifacts in run.json.
-  Run scripts/validate_storyboard.py for local outputs.
+  allowed_claims. Then build a DTC Desire Angle with target_buyer,
+  buying_emotion, desired_identity, use_occasion, visual_hook,
+  purchase_trigger, brand_world, and what_not_to_do. Collect only compliant
+  public, authorized, user-provided, local, or fallback references, and
+  decompose selected references into ad_reference records. Before image
+  generation, run DTC Creative Director. Default to DTC-first creative types
+  such as desire-scene, identity-upgrade, ritual-moment, occasion-trigger,
+  gift-emotion, lifestyle-proof, creator-native-hook, or
+  premium-product-memory. Use ugc-demo, feature-to-benefit, mechanism-reveal,
+  or scale-proof only when the user explicitly requests Amazon listing, how-to,
+  product explanation, functional demonstration, mechanism explanation, or
+  size/fit proof. Select scene_ref, motion_chain, model_ref, camera_plan,
+  brand_film_mode, script_pattern, picture_fragment_logic, and end_frame, then
+  output an internal DTC Creative Reference Pack. Keep brand_film_mode internal
+  and never expose director names or "like this director" language. Then run
+  Brand Film Look Director to create an internal Brand Film Look Pack with
+  brand_world_lock, cinematic_grammar, shot_function_map,
+  material_and_light_rules, pacing_rules, signature_shot, end_frame_rule, and
+  failure_rules. The shot_function_map must follow picture_fragment_logic and
+  must not impose fixed panel roles. Then run Storyboard Design Expert, using
+  only Product Truth Card, DTC Desire Angle, DTC Creative Reference Pack, and
+  Brand Film Look Pack as creative inputs. Generate one actual horizontal
+  five-panel 16:9 storyboard/contact-sheet image. Every panel must be a
+  video-ready keyframe with a purchase emotion task, not only product proof.
+  The user-facing output remains exactly three sections: product image,
+  storyboard image, and a 15-second or 30-second English DTC ad script using
+  Visual Beat, Desire / Tension, Product Role, On-screen Text, Voiceover, and
+  CTA Intent. Keep Camera / Motion and Reference Logic in internal packs unless
+  the user asks for an internal breakdown. Save run.json and source_records.json
+  when filesystem access is available. Store output paths, validation metadata,
+  DTC Desire Angle, Brand Film Look Pack, and blocked artifacts in run.json. Run
+  scripts/validate_storyboard.py for local outputs.

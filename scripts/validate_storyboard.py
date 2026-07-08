@@ -199,6 +199,11 @@ def normalize_run_metadata(run: dict, source_records: dict) -> dict:
         run.get("end_frame"),
         pack.get("end_frame"),
     )
+    dtc_desire_angle = first_nonempty(
+        run.get("dtc_desire_angle"),
+        run.get("dtcDesireAngle"),
+        pack.get("dtc_desire_angle"),
+    )
 
     output_paths = first_nonempty(run.get("output_paths"), run.get("outputs"))
     if not isinstance(output_paths, dict):
@@ -211,6 +216,7 @@ def normalize_run_metadata(run: dict, source_records: dict) -> dict:
             records_first_source_url(source_records),
         ),
         "locked_terms": first_nonempty(run.get("locked_terms"), product_truth.get("locked_terms")),
+        "dtc_desire_angle": dtc_desire_angle,
         "creative_type": creative_type,
         "scene_ref": scene_ref,
         "motion_chain": motion_chain,
@@ -263,6 +269,7 @@ def validate_metadata(metadata: dict) -> list[str]:
     for field in [
         "source_url",
         "locked_terms",
+        "dtc_desire_angle",
         "creative_type",
         "scene_ref",
         "motion_chain",
@@ -274,6 +281,25 @@ def validate_metadata(metadata: dict) -> list[str]:
     ]:
         if not is_nonempty(metadata.get(field)):
             errors.append(f"run.json missing non-empty `{field}`")
+
+    dtc_desire_angle = metadata.get("dtc_desire_angle")
+    if isinstance(dtc_desire_angle, dict):
+        for field in [
+            "target_buyer",
+            "buying_emotion",
+            "desired_identity",
+            "use_occasion",
+            "visual_hook",
+            "purchase_trigger",
+            "brand_world",
+            "what_to_feel_before_product_detail",
+            "what_not_to_do",
+        ]:
+            if not is_nonempty(dtc_desire_angle.get(field)):
+                errors.append(f"run.json `dtc_desire_angle` missing non-empty `{field}`")
+    elif is_nonempty(dtc_desire_angle):
+        errors.append("run.json `dtc_desire_angle` must be an object")
+
     camera_plan = metadata.get("camera_plan")
     if isinstance(camera_plan, dict):
         for field in [
