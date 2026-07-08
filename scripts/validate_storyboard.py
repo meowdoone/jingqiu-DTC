@@ -204,6 +204,13 @@ def normalize_run_metadata(run: dict, source_records: dict) -> dict:
         run.get("dtcDesireAngle"),
         pack.get("dtc_desire_angle"),
     )
+    product_function_lock = first_nonempty(
+        run.get("product_function_lock"),
+        run.get("productFunctionLock"),
+        product_truth.get("product_function_lock"),
+        product_truth.get("function_lock"),
+        pack.get("product_function_lock"),
+    )
 
     output_paths = first_nonempty(run.get("output_paths"), run.get("outputs"))
     if not isinstance(output_paths, dict):
@@ -216,6 +223,7 @@ def normalize_run_metadata(run: dict, source_records: dict) -> dict:
             records_first_source_url(source_records),
         ),
         "locked_terms": first_nonempty(run.get("locked_terms"), product_truth.get("locked_terms")),
+        "product_function_lock": product_function_lock,
         "dtc_desire_angle": dtc_desire_angle,
         "creative_type": creative_type,
         "scene_ref": scene_ref,
@@ -269,6 +277,7 @@ def validate_metadata(metadata: dict) -> list[str]:
     for field in [
         "source_url",
         "locked_terms",
+        "product_function_lock",
         "dtc_desire_angle",
         "creative_type",
         "scene_ref",
@@ -281,6 +290,21 @@ def validate_metadata(metadata: dict) -> list[str]:
     ]:
         if not is_nonempty(metadata.get(field)):
             errors.append(f"run.json missing non-empty `{field}`")
+
+    product_function_lock = metadata.get("product_function_lock")
+    if isinstance(product_function_lock, dict):
+        for field in [
+            "what_product_does",
+            "how_it_works_or_is_used",
+            "supported_use_cases",
+            "required_user_action_or_setup",
+            "functional_limits",
+            "unsupported_functions",
+        ]:
+            if not is_nonempty(product_function_lock.get(field)):
+                errors.append(f"run.json `product_function_lock` missing non-empty `{field}`")
+    elif is_nonempty(product_function_lock):
+        errors.append("run.json `product_function_lock` must be an object")
 
     dtc_desire_angle = metadata.get("dtc_desire_angle")
     if isinstance(dtc_desire_angle, dict):

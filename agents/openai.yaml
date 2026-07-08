@@ -3,13 +3,18 @@ short_description: Build SKU-level DTC-first product ads and brand-short storybo
 default_prompt: >
   Use this skill for SKU-level DTC product storyboard work from a product URL,
   ASIN, product image, screenshot, ecommerce page, or SKU brief. First build a
-  Product Truth Card with source_evidence, locked_terms, forbid_mutations, and
-  allowed_claims. Then build a DTC Desire Angle with target_buyer,
-  buying_emotion, desired_identity, use_occasion, visual_hook,
-  purchase_trigger, brand_world, and what_not_to_do. Collect only compliant
-  public, authorized, user-provided, local, or fallback references, and
-  decompose selected references into ad_reference records. Before image
-  generation, run DTC Creative Director. Default to DTC-first creative types
+  Product Truth Card with source_evidence, locked_terms, forbid_mutations,
+  allowed_claims, and product_function_lock. The product_function_lock must
+  preserve what the product does, how it works or is used, supported use cases,
+  required user action or setup, functional limits, and unsupported functions.
+  Product function, use method, target object, mechanism, and functional limits
+  must not be changed by DTC desire, script writing, or brand-film language.
+  Then build a DTC Desire Angle with target_buyer, buying_emotion,
+  desired_identity, use_occasion, visual_hook, purchase_trigger, brand_world,
+  and what_not_to_do. Collect only compliant public, authorized, user-provided,
+  local, or fallback references, and decompose selected references into
+  ad_reference records. Before image generation, run DTC Creative Director.
+  Default to DTC-first creative types
   such as desire-scene, identity-upgrade, ritual-moment, occasion-trigger,
   gift-emotion, lifestyle-proof, creator-native-hook, or
   premium-product-memory. Use ugc-demo, feature-to-benefit, mechanism-reveal,
@@ -34,5 +39,5 @@ default_prompt: >
   CTA Intent. Keep Camera / Motion and Reference Logic in internal packs unless
   the user asks for an internal breakdown. Save run.json and source_records.json
   when filesystem access is available. Store output paths, validation metadata,
-  DTC Desire Angle, Brand Film Look Pack, and blocked artifacts in run.json. Run
-  scripts/validate_storyboard.py for local outputs.
+  product_function_lock, DTC Desire Angle, Brand Film Look Pack, and blocked
+  artifacts in run.json. Run scripts/validate_storyboard.py for local outputs.

@@ -385,6 +385,7 @@ proof_first_exception_gate:
 ## Selection Rules
 
 - Select by `dtc_desire_angle`, buyer tension, and available Product Truth Card evidence, not by style words alone.
+- `product_function_lock` outranks creative desire: do not change what the product does, how it works or is used, who/what it is for, or the functional limits.
 - If intent is ambiguous, choose one of the DTC-first types: `desire-scene`, `identity-upgrade`, `ritual-moment`, `occasion-trigger`, `gift-emotion`, `lifestyle-proof`, `creator-native-hook`, or `premium-product-memory`.
 - Do not select `ugc-demo`, `feature-to-benefit`, `mechanism-reveal`, or `scale-proof` as the primary type unless the user explicitly asks for Amazon listing, how-to, product explanation, functional demonstration, mechanism explanation, or size/fit proof.
 - `customization-choice` requires real options, configuration, or customization evidence.

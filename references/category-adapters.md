@@ -2,9 +2,9 @@
 
 ## Purpose
 
-Use one primary adapter after Product Truth Card creation. The adapter converts product truth into visual locks, allowed buyer events, proof beats, and drift checks.
+Use one primary adapter after Product Truth Card creation. The adapter converts product truth into visual locks, product function locks, allowed buyer events, proof beats, and drift checks.
 
-Do not use category adapters as product evidence. They only decide how to preserve and demonstrate the SKU.
+Do not use category adapters as product evidence. They only decide how to preserve and demonstrate the SKU. If an adapter conflicts with `product_function_lock`, the Product Truth Card wins.
 
 ## Adapter Record
 
@@ -13,6 +13,7 @@ category_adapter:
   adapter_id:
   triggers:
   required_locks:
+  required_function_locks:
   allowed_buyer_events:
   recommended_panels:
   high_risk_defaults:
@@ -32,6 +33,11 @@ Required locks:
 - print position, print scale, and print boundary.
 - same Design Asset across upload preview, print detail, worn state, and final group/gift frame.
 - same front/back side when only one side is evidenced.
+
+Required function locks:
+
+- customization function only if evidenced: upload, choose, print, embroider, engrave, personalize, or bulk order.
+- wearable apparel function stays wearable apparel; do not turn it into protective gear, performance equipment, or medical apparel unless evidenced.
 
 Allowed buyer events:
 
@@ -92,6 +98,11 @@ Required locks:
 - product base shape, material, and color,
 - visible preview-to-product continuity.
 
+Required function locks:
+
+- exact personalization function: engraving, printing, photo upload, name customization, option choice, modular configuration, or monogram.
+- final personalized state and buyer action needed to create it.
+
 Allowed buyer events:
 
 - choose option,
@@ -139,6 +150,11 @@ Required locks:
 - product silhouette, color, scale, fit, and body placement.
 - same wearer crop or same body relationship across panels when a wearer is used.
 
+Required function locks:
+
+- exact body relationship: worn, carried, held, strapped, clipped, stored on body, or displayed on body.
+- do not imply support, protection, medical, sports-performance, or safety function unless evidenced.
+
 Allowed buyer events:
 
 - fit check,
@@ -156,6 +172,12 @@ Required locks:
 - operation order,
 - hand relationship,
 - connection or placement logic.
+
+Required function locks:
+
+- exact operation: open/close, align, insert, connect, press, assemble, place, mount, charge, pour, clean, or dispense.
+- required setup order and any compatible object/device/surface.
+- do not invent automation, smart features, power, capacity, compatibility, or safety function.
 
 Allowed buyer events:
 
@@ -177,6 +199,11 @@ Required locks:
 - material,
 - placement logic,
 - package or included pieces only if evidenced.
+
+Required function locks:
+
+- exact placement, display, storage, organization, decor, packaging, or containment function.
+- do not invent load-bearing, preservation, cooling/heating, waterproofing, or protective function unless evidenced.
 
 Allowed buyer events:
 
